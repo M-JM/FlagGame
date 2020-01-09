@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/titleFragment"
         android:name="be.hub.jimmymiels.flaggame.titleScreen.TitleFragment"
-        android:label="TitleFragment"
+        android:label="Welcome to Flag Game"
         tools:layout="@layout/fragment_title">
         <action
             android:id="@+id/action_titleFragment_to_gameFragment"
@@ -17,7 +17,7 @@
     <fragment
         android:id="@+id/gameFragment"
         android:name="be.hub.jimmymiels.flaggame.gameScreen.GameFragment"
-        android:label="GameFragment"
+        android:label="Guess the country"
         tools:layout="@layout/fragment_game">
         <action
             android:id="@+id/action_gameFragment_to_endFragment"
@@ -26,7 +26,7 @@
     <fragment
         android:id="@+id/endFragment"
         android:name="be.hub.jimmymiels.flaggame.endScreen.EndFragment"
-        android:label="EndFragment"
+        android:label="You made it!"
         tools:layout="@layout/fragment_end">
         <action
             android:id="@+id/action_endFragment_to_titleFragment"
