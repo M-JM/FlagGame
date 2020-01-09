@@ -5,7 +5,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".titleScreen.TitleFragment">
 
-<androidx.constraintlayout.widget.ConstraintLayout
+    <data>
+        <variable
+            name="gameViewModel"
+            type="be.hub.jimmymiels.flaggame.gameScreen.GameViewModel" />
+
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
 
     android:id="@+id/frameLayout3"
     android:layout_width="match_parent"

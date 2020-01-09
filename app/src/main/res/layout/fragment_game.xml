@@ -5,6 +5,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".gameScreen.GameFragment">
 
+    <data>
+    <variable
+        name="gameViewModel"
+        type="be.hub.jimmymiels.flaggame.gameScreen.GameViewModel" />
+
+</data>
+
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
 
 

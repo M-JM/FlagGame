@@ -4,6 +4,9 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
@@ -38,6 +41,12 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+
+    //Viewmodel
+
+    kapt "androidx.lifecycle:lifecycle-compiler:2.1.0"
+
+
 
     // Navigation
     def nav_version = "2.1.0"

@@ -5,6 +5,13 @@
     tools:context=".endScreen.EndFragment"
     >
 
+    <data>
+        <variable
+            name="gameViewModel"
+            type="be.hub.jimmymiels.flaggame.gameScreen.GameViewModel" />
+
+    </data>
+
 <androidx.constraintlayout.widget.ConstraintLayout
 
     android:id="@+id/frameLayout2"
