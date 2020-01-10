@@ -58,7 +58,19 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.1.0'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
 
-    //Lifecycle
+    //Moshi dependencies
+
+    def version_moshi ="1.9.2"
+    implementation "com.squareup.moshi:moshi:$version_moshi"
+    implementation "com.squareup.moshi:moshi-kotlin:$version_moshi"
+
+
+    //Retrofit Dependencies
+    def version_retrofit = "2.6.3"
+    implementation "com.squareup.retrofit2:retrofit: $version_retrofit"
+    implementation "com.squareup.retrofit2:converter-scalars:$version_retrofit"
+    implementation "com.squareup.retrofit2:converter-moshi:$version_retrofit"
+
 
 
 
