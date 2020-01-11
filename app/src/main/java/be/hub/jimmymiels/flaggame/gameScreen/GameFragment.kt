@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.findNavController
 import be.hub.jimmymiels.flaggame.R
 import be.hub.jimmymiels.flaggame.databinding.FragmentGameBinding
 
@@ -38,6 +39,11 @@ class GameFragment : Fragment() {
         binding.gameViewModel = viewModel
 
         binding.setLifecycleOwner(this)
+
+        binding.endButton.setOnClickListener {
+            v: View ->
+            v.findNavController().navigate(GameFragmentDirections.actionGameFragmentToEndFragment())
+        }
 
         return binding.root
     }
