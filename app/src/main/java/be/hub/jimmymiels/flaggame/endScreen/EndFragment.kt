@@ -18,7 +18,7 @@ import be.hub.jimmymiels.flaggame.gameScreen.GameViewModel
 
 class EndFragment : Fragment() {
 
-  //  private lateinit var viewModel: GameViewModel
+    //  private lateinit var viewModel: GameViewModel
     private lateinit var binding: FragmentEndBinding
 
     override fun onCreateView(
@@ -33,29 +33,26 @@ class EndFragment : Fragment() {
             false
         )
         // Get the viewmodel
-      //  viewModel = ViewModelProviders.of(this).get(GameViewModel::class.java)
+        //  viewModel = ViewModelProviders.of(this).get(GameViewModel::class.java)
 
         // Set the viewmodel for databinding - this allows the bound layout access to all of the
         // data in the VieWModel
 
         val application = requireNotNull(this.activity).application
         val dataSource = ScoreDatabase.getInstance(application).scoreDatabaseDao
-        val viewModelFactory = EndViewModelFactory(dataSource,application)
-        val endViewModel = ViewModelProviders.of(this, viewModelFactory).get(EndViewModel::class.java)
+        val viewModelFactory = EndViewModelFactory(dataSource, application)
+        val endViewModel =
+            ViewModelProviders.of(this, viewModelFactory).get(EndViewModel::class.java)
 
         binding.endViewModel = endViewModel
         //binding.gameViewModel = viewModel
         binding.setLifecycleOwner(this)
 
-        binding.backtitleButton.setOnClickListener{ v:View ->
-            v.findNavController().navigate(EndFragmentDirections.actionEndFragmentToTitleFragment())
+        binding.backtitleButton.setOnClickListener { v: View ->
+            v.findNavController()
+                .navigate(EndFragmentDirections.actionEndFragmentToTitleFragment())
         }
-
-
         return binding.root
-
-
-
 
 
     }

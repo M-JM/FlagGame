@@ -14,10 +14,9 @@ import be.hub.jimmymiels.flaggame.databinding.FragmentTitleBinding
 import be.hub.jimmymiels.flaggame.gameScreen.GameViewModel
 
 
-
 class TitleFragment : Fragment() {
 
-    private  lateinit var viewModel: GameViewModel
+    private lateinit var viewModel: GameViewModel
 
 
     override fun onCreateView(
@@ -39,8 +38,15 @@ class TitleFragment : Fragment() {
         binding.setLifecycleOwner(this)
 
         binding.startButton.setOnClickListener { v: View ->
-            v.findNavController().navigate(TitleFragmentDirections.actionTitleFragmentToGameFragment())
+            v.findNavController()
+                .navigate(TitleFragmentDirections.actionTitleFragmentToGameFragment())
         }
+
+        binding.trainButton.setOnClickListener{v: View ->
+            v.findNavController()
+                .navigate(TitleFragmentDirections.actionTitleFragmentToCountryListFragment())
+        }
+
         return binding.root
 
     }
