@@ -24,3 +24,4 @@ interface ScoreDatabaseDao {
     @Query("SELECT * FROM final_score_table ORDER BY scoreId DESC LIMIT 1")
     fun getFirstScore(): FinalScore?
 }
+
