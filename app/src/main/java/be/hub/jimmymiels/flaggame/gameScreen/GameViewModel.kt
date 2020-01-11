@@ -5,9 +5,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import be.hub.jimmymiels.flaggame.apiCountry.CountryApi
 import be.hub.jimmymiels.flaggame.apiCountry.CountryProperties
-import retrofit2.Call
-import retrofit2.Response
-import javax.security.auth.callback.Callback
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+
 
 class GameViewModel : ViewModel() {
 
@@ -15,21 +17,34 @@ class GameViewModel : ViewModel() {
     val response: LiveData<String>
         get() = _response
 
+    private val _country = MutableLiveData<CountryProperties>()
+    val country:LiveData<CountryProperties>
+    get() = _country
+
+    private var viewModelJob = Job()
+    private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
+
     init {
         getCountries()
     }
 
     private fun getCountries() {
-        CountryApi.retrofitService.getProperties().enqueue(object : retrofit2.Callback<List<CountryProperties>> {
-            override fun onFailure(call: Call<List<CountryProperties>>, t: Throwable) {
-                _response.value = "Failure" + t.message
+       coroutineScope.launch {
+      var getPropertiesDeferred =  CountryApi.retrofitService.getProperties()
+       try {
+              var listResult = getPropertiesDeferred.await()
+           _response.value = "Success: ${listResult.size} Mars properties retrieved"
+           _country.value = listResult[0]
             }
-
-            override fun onResponse(call: Call<List<CountryProperties>>, response: Response<List<CountryProperties>>) {
-                _response.value = "Succes: ${response.body()?.size} countries retrieved"
-            }
-
+              catch (e: Exception) {
+           _response.value = "Failure : ${e.message}"
+       }
         }
-        )
+   }
+    override fun onCleared() {
+        super.onCleared()
+        viewModelJob.cancel()
     }
+
 }
+
