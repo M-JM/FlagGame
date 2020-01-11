@@ -7,8 +7,8 @@
 
     <data>
         <variable
-            name="gameViewModel"
-            type="be.hub.jimmymiels.flaggame.gameScreen.GameViewModel" />
+            name="endViewModel"
+            type="be.hub.jimmymiels.flaggame.endScreen.EndViewModel" />
 
     </data>
 
@@ -30,7 +30,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/againButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="293dp"
@@ -40,7 +40,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/backtitleButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="195dp"
