@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_titleFragment_to_gameFragment"
             app:destination="@id/gameFragment" />
+        <action
+            android:id="@+id/action_titleFragment_to_countryListFragment"
+            app:destination="@id/countryListFragment" />
     </fragment>
     <fragment
         android:id="@+id/gameFragment"
@@ -32,4 +35,9 @@
             android:id="@+id/action_endFragment_to_titleFragment"
             app:destination="@id/titleFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/countryListFragment"
+        android:name="be.hub.jimmymiels.flaggame.countryScreen.CountryListFragment"
+        android:label="CountryListFragment"
+        tools:layout="@layout/fragment_country_list"/>
 </navigation>
