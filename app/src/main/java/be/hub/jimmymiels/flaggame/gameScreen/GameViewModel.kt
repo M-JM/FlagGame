@@ -5,10 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import be.hub.jimmymiels.flaggame.apiCountry.CountryApi
 import be.hub.jimmymiels.flaggame.apiCountry.CountryProperties
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 
 class GameViewModel : ViewModel() {
@@ -20,6 +17,10 @@ class GameViewModel : ViewModel() {
     private val _country = MutableLiveData<CountryProperties>()
     val country:LiveData<CountryProperties>
     get() = _country
+
+    private val _countries = MutableLiveData<List<CountryProperties>>()
+    val countries:LiveData<List<CountryProperties>>
+    get() = _countries
 
     private var viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
@@ -35,6 +36,7 @@ class GameViewModel : ViewModel() {
               var listResult = getPropertiesDeferred.await()
            _response.value = "Success: ${listResult.size} Mars properties retrieved"
            _country.value = listResult[0]
+           _countries.value = listResult
             }
               catch (e: Exception) {
            _response.value = "Failure : ${e.message}"

@@ -4,8 +4,16 @@ package be.hub.jimmymiels.flaggame
 import android.widget.ImageView
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
+import androidx.recyclerview.widget.RecyclerView
+import be.hub.jimmymiels.flaggame.apiCountry.CountryProperties
+import be.hub.jimmymiels.flaggame.countryScreen.PhotoGridAdapter
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
 
+@BindingAdapter("listData")
+fun bindRecyclerView(recyclerView: RecyclerView, data: List<CountryProperties>?) {
+    val adapter = recyclerView.adapter as PhotoGridAdapter
+    adapter.submitList(data)
+}
 
 @BindingAdapter("imageUrl")
 fun bindImage(imgView: ImageView, imgUrl: String?) {
