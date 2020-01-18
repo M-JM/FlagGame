@@ -15,6 +15,8 @@ import kotlin.collections.ArrayList
 class GameViewModel : ViewModel() {
 
     var radiochecked = MutableLiveData<Int>()
+    var buttonchecked1 = MutableLiveData<Boolean>()
+    var buttonchecked2 = MutableLiveData<Boolean>()
 
     private var gameIndex = 5
 
@@ -22,6 +24,14 @@ class GameViewModel : ViewModel() {
     private val _testsize = MutableLiveData<String>()
     val testsize: LiveData<String>
         get() = _testsize
+
+    private val _hint1 = MutableLiveData<String>()
+    val hint1: LiveData<String>
+        get() = _hint1
+
+    private val _hint2 = MutableLiveData<String>()
+    val hint2: LiveData<String>
+        get() = _hint2
 
     private val _option1 = MutableLiveData<String>()
     val option1: LiveData<String>
@@ -88,7 +98,8 @@ class GameViewModel : ViewModel() {
         getRandomCountry()
         _score.value = 0
         _eventGameFinish.value = false
-
+        buttonchecked1.value = true
+        buttonchecked2.value = true
 
 
     }
@@ -122,6 +133,8 @@ class GameViewModel : ViewModel() {
                 _correctanswer.value = listOf(listResult[random])
                 _randomflag.value = listResult[random].imgSrcUrl
                 _country.value = listResult[random]
+                _hint1.value = ""
+                _hint2.value = ""
 
 
                 getRandomAnswers()
@@ -177,26 +190,43 @@ class GameViewModel : ViewModel() {
         _score.value = (_score.value)?.plus(100)
         gameIndex--
         getRandomCountry()
-        radiochecked.value = 0
+        reset()
     }
 
     fun wrongAnswer() {
         _score.value = (_score.value)?.plus(0)
         gameIndex--
         getRandomCountry()
-        radiochecked.value = 0
+        reset()
     }
 
     fun onGameFinishComplete() {
         _eventGameFinish.value = true
     }
 
-    fun Onbutton() {
+    fun hint2selected() {
 
-        getRandomCountry()
-        radiochecked.value = 0
+        _hint1.value = "This country is located in "+_country.value!!.subregion
+        _score.value = (_score.value)?.minus(25)
+        buttonchecked2.value = false
+
+
+            }
+
+    fun hint1selected() {
+
+        _hint2.value = "The capital of this Country is" + _country.value!!.capital
+        _score.value = (_score.value)?.minus(25)
+        buttonchecked1.value = false
 
     }
+
+    fun reset() {
+        radiochecked.value = 0
+        buttonchecked1.value = true
+        buttonchecked2.value = true
+    }
+
 
     override fun onCleared() {
         super.onCleared()
