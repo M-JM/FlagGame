@@ -3,14 +3,19 @@ package be.hub.jimmymiels.flaggame.gameScreen
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import be.hub.jimmymiels.flaggame.R
 import be.hub.jimmymiels.flaggame.apiCountry.CountryApi
 import be.hub.jimmymiels.flaggame.apiCountry.CountryProperties
+
 import kotlinx.coroutines.*
 import java.util.*
 import kotlin.collections.ArrayList
 
 
 class GameViewModel : ViewModel() {
+
+    var radiochecked = MutableLiveData<Int>()
+
 
     private val _testsize = MutableLiveData<String>()
     val testsize: LiveData<String>
@@ -33,11 +38,10 @@ class GameViewModel : ViewModel() {
         get() = _option4
 
 
-    var queries = mutableListOf<String>()
 
-    private val _randomAnswers  = MutableLiveData<ArrayList<String>>()
+    private val _randomAnswers = MutableLiveData<ArrayList<String>>()
     val randomAnswers: LiveData<ArrayList<String>>
-    get() =_randomAnswers
+        get() = _randomAnswers
 
     private val _randomflag1 = MutableLiveData<String>()
     val randomflag1: LiveData<String>
@@ -75,6 +79,7 @@ class GameViewModel : ViewModel() {
         getRandomCountry()
 
 
+
     }
 
     private fun getCountries() {
@@ -82,9 +87,7 @@ class GameViewModel : ViewModel() {
             var getPropertiesDeferred = CountryApi.retrofitService.getProperties()
             try {
                 var listResult = getPropertiesDeferred.await()
-                var random = Random().nextInt(249)
-                _response.value = "Success: ${listResult.size} Mars properties retrieved"
-                //_country.value = listResult[random]
+                _response.value = "Success: ${listResult.size} countries properties retrieved"
                 _countries.value = listResult
 
             } catch (e: Exception) {
@@ -102,29 +105,10 @@ class GameViewModel : ViewModel() {
             try {
                 var listResult = getPropertiesDeferred.await()
                 var random = Random().nextInt(249)
-                 _correctAnswer.value = listResult[random].name
+                _correctAnswer.value = listResult[random].name
                 _correctanswer.value = listOf(listResult[random])
-                 _randomflag1.value = listResult[random].imgSrcUrl
+                _randomflag1.value = listResult[random].imgSrcUrl
                 _country.value = listResult[random]
-
-
-                //_option1.value = _correctAnswer.value!!
-                // _option2.value = listResult[random].name
-                // _option3.value = listResult[random].name
-                // _option4.value = listResult[random].name
-                // _randomAnswers.value!![0] =_correctAnswer.value!!
-                // queries[1] =_correctAnswer.value!!
-                //  _testsize.value = _randomAnswers.value!!.size.toString()
-                // queries[2] =_correctAnswer.value!!
-                // queries[3] =_correctAnswer.value!!
-                //queries[1] = _countries.value!![random].name
-                //queries[2] = _countries.value!![random2].name
-                //queries[3] = _countries.value!![random3].name
-
-                //_testsize.value = _randomAnswers.value!!.size
-               // getRandomAnswers()
-
-               // queries.shuffle()
 
                 getRandomAnswers()
 
@@ -137,33 +121,39 @@ class GameViewModel : ViewModel() {
         }
     }
 
-    fun getRandomAnswers(){
+    fun getRandomAnswers() {
 
-    var chars  =_countries.value!!.shuffled().take(3).toMutableList()
+        var chars = _countries.value!!.shuffled().take(3).toMutableList()
 
-        if (chars.isNotEmpty())
-        {
+        if (chars.isNotEmpty()) {
             chars.add(_country.value!!)
         }
-chars.shuffle()
-
-       // var random = Random().nextInt(249)
-       // var random2 = Random().nextInt(249)
-       // var random3 = Random().nextInt(249)
+        chars.shuffle()
 
         _option1.value = chars[0].name
         _option2.value = chars[1].name
         _option3.value = chars[2].name
         _option4.value = chars[3].name
-        _testsize.value = chars.size.toString()
+     }
 
+    fun resolveGame(){
+
+        val checkedId = radiochecked.value
+        var selectedvalue = ""
+        when(checkedId) {
+            R.id.radioButton -> selectedvalue = _option1.value.toString()
+            R.id.radioButton2 -> selectedvalue = _option2.value.toString()
+            R.id.radioButton3 -> selectedvalue = _option3.value.toString()
+            R.id.radioButton4 -> selectedvalue = _option4.value.toString()
+        }
+        if(_correctAnswer.value!!.toString() == selectedvalue)
+        {_testsize.value = "yes"} else {_testsize.value = "no"}
 
     }
 
     fun Onbutton() {
 
         getRandomCountry()
-        getRandomAnswers()
 
     }
 
