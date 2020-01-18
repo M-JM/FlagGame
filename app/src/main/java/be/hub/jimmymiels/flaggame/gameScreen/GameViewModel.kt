@@ -48,9 +48,6 @@ class GameViewModel : ViewModel() {
     val randomAnswers: LiveData<ArrayList<String>>
         get() = _randomAnswers
 
-    private val _randomflag1 = MutableLiveData<String>()
-    val randomflag1: LiveData<String>
-        get() = _randomflag1
 
     private val _response = MutableLiveData<String>()
     val response: LiveData<String>
@@ -102,6 +99,7 @@ class GameViewModel : ViewModel() {
             try {
                 var listResult = getPropertiesDeferred.await()
                 _response.value = "Success: ${listResult.size} countries properties retrieved"
+                _country.value = listResult[0]
                 _countries.value = listResult
 
             } catch (e: Exception) {
@@ -119,10 +117,12 @@ class GameViewModel : ViewModel() {
             try {
                 var listResult = getPropertiesDeferred.await()
                 var random = Random().nextInt(249)
+                _countries.value =listResult
                 _correctAnswer.value = listResult[random].name
                 _correctanswer.value = listOf(listResult[random])
-                _randomflag1.value = listResult[random].imgSrcUrl
+                _randomflag.value = listResult[random].imgSrcUrl
                 _country.value = listResult[random]
+
 
                 getRandomAnswers()
 

@@ -62,7 +62,6 @@
             android:layout_marginStart="32dp"
             android:layout_marginEnd="42dp"
             android:layout_marginBottom="100dp"
-            android:onClick="@{()-> gameViewModel.Onbutton()}"
             android:text="Train"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/startButton"
