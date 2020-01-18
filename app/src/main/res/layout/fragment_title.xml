@@ -24,20 +24,18 @@
             android:id="@+id/startButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="149dp"
-            android:layout_marginTop="420dp"
-            android:layout_marginEnd="175dp"
-            android:layout_marginBottom="26dp"
+            android:layout_marginStart="42dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="100dp"
             android:text="Start"
-            app:layout_constraintBottom_toTopOf="@+id/trainButton"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toEndOf="@+id/trainButton" />
 
         <TextView
             android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="64dp"
+            android:layout_height="70dp"
             android:layout_marginTop="144dp"
             android:text="@{gameViewModel.response}"
             app:layout_constraintEnd_toEndOf="parent"
@@ -46,24 +44,28 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="192dp"
             android:text="text"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/trainButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="148dp"
-            android:layout_marginEnd="175dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="42dp"
             android:layout_marginBottom="100dp"
+            android:onClick="@{()-> gameViewModel.Onbutton()}"
             android:text="Train"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/startButton"
             app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
