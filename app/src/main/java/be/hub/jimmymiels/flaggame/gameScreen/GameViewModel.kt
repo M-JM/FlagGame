@@ -16,6 +16,8 @@ class GameViewModel : ViewModel() {
 
     var radiochecked = MutableLiveData<Int>()
 
+    private var gameIndex = 5
+
 
     private val _testsize = MutableLiveData<String>()
     val testsize: LiveData<String>
@@ -37,7 +39,10 @@ class GameViewModel : ViewModel() {
     val option4: LiveData<String>
         get() = _option4
 
-
+    // The current score
+    private val _score = MutableLiveData<Int>()
+    val score: LiveData<Int>
+        get() = _score
 
     private val _randomAnswers = MutableLiveData<ArrayList<String>>()
     val randomAnswers: LiveData<ArrayList<String>>
@@ -71,12 +76,21 @@ class GameViewModel : ViewModel() {
     val correctanswer: LiveData<List<CountryProperties>>
         get() = _correctanswer
 
+    private val _eventGameFinish = MutableLiveData<Boolean>()
+    val eventGameFinish: LiveData<Boolean>
+        get() = _eventGameFinish
+
+
+
+
     private var viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     init {
         getCountries()
         getRandomCountry()
+        _score.value = 0
+        _eventGameFinish.value = false
 
 
 
@@ -146,14 +160,41 @@ class GameViewModel : ViewModel() {
             R.id.radioButton3 -> selectedvalue = _option3.value.toString()
             R.id.radioButton4 -> selectedvalue = _option4.value.toString()
         }
-        if(_correctAnswer.value!!.toString() == selectedvalue)
-        {_testsize.value = "yes"} else {_testsize.value = "no"}
+      if (gameIndex > 0 ){
 
+          if(_correctAnswer.value!!.toString() == selectedvalue)
+          {rightAnswer()
+          } else {
+              wrongAnswer()}
+      }
+        else{
+          onGameFinishComplete()
+      }
+
+      }
+
+    fun rightAnswer() {
+        _score.value = (_score.value)?.plus(100)
+        gameIndex--
+        getRandomCountry()
+        radiochecked.value = 0
+    }
+
+    fun wrongAnswer() {
+        _score.value = (_score.value)?.plus(0)
+        gameIndex--
+        getRandomCountry()
+        radiochecked.value = 0
+    }
+
+    fun onGameFinishComplete() {
+        _eventGameFinish.value = true
     }
 
     fun Onbutton() {
 
         getRandomCountry()
+        radiochecked.value = 0
 
     }
 

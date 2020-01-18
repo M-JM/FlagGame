@@ -7,8 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import be.hub.jimmymiels.flaggame.R
 import be.hub.jimmymiels.flaggame.databinding.FragmentGameBinding
 
@@ -39,6 +42,12 @@ class GameFragment : Fragment() {
         binding.gameViewModel = viewModel
 
         binding.setLifecycleOwner(this)
+
+        viewModel.eventGameFinish.observe(this, Observer { isFinished ->   if (isFinished) {
+            val action = GameFragmentDirections.actionGameFragmentToEndFragment()
+            NavHostFragment.findNavController(this).navigate(action)
+        }
+        })
 
         binding.endButton.setOnClickListener {
             v: View ->
