@@ -79,9 +79,6 @@ class GameViewModel : ViewModel() {
     val countries: LiveData<List<CountryProperties>>
         get() = _countries
 
-    private val _correctanswer = MutableLiveData<List<CountryProperties>>()
-    val correctanswer: LiveData<List<CountryProperties>>
-        get() = _correctanswer
 
     private val _eventGameFinish = MutableLiveData<Boolean>()
     val eventGameFinish: LiveData<Boolean>
@@ -130,7 +127,6 @@ class GameViewModel : ViewModel() {
                 var random = Random().nextInt(249)
                 _countries.value =listResult
                 _correctAnswer.value = listResult[random].name
-                _correctanswer.value = listOf(listResult[random])
                 _randomflag.value = listResult[random].imgSrcUrl
                 _country.value = listResult[random]
                 _hint1.value = ""

@@ -49,10 +49,6 @@ class GameFragment : Fragment() {
         }
         })
 
-        binding.endButton.setOnClickListener {
-            v: View ->
-            v.findNavController().navigate(GameFragmentDirections.actionGameFragmentToEndFragment())
-        }
 
         return binding.root
     }

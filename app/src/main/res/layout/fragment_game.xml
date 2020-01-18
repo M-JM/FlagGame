@@ -21,18 +21,6 @@
         android:layout_height="match_parent">
 
 
-        <Button
-            android:id="@+id/endButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="151dp"
-            android:layout_marginEnd="172dp"
-            android:layout_marginBottom="24dp"
-            android:text="End"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
@@ -101,7 +89,6 @@
             android:layout_marginEnd="88dp"
             android:layout_marginBottom="88dp"
             android:checkedButton="@={gameViewModel.radiochecked}"
-            app:layout_constraintBottom_toTopOf="@+id/endButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
