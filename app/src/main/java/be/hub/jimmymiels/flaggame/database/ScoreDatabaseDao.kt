@@ -4,13 +4,17 @@ import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Update
 
 @Dao
 interface ScoreDatabaseDao {
 
     @Insert
-    fun insert(finalscore : FinalScore)
+    // parameter , instance final of class FinalScore)
+    fun insert(final : FinalScore)
 
+    @Update
+    fun update(final: FinalScore)
 
     // Select the 10 highest finalScore from Database
     @Query("SELECT * FROM final_score_table ORDER BY final_score_value DESC LIMIT 10")
