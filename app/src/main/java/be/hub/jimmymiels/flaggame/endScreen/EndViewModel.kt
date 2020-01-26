@@ -1,6 +1,7 @@
 package be.hub.jimmymiels.flaggame.endScreen
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import be.hub.jimmymiels.flaggame.database.FinalScore
@@ -17,32 +18,45 @@ class EndViewModel (
 
 
 
+    private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
+    private var currentScore = MutableLiveData<FinalScore?>()
+    val top10score = database.getTop10Score()
+
+    init {
+    }
+
+    private suspend fun clear() {
+        withContext(Dispatchers.IO) {
+            database.clear()
+        }
+    }
+
+      fun insert (final: FinalScore) {
+        uiScope.launch {
+        withContext(Dispatchers.IO){
+            database.insert(final)
+        }
+    }
+    }
+
+    fun onEndGame() {
+        uiScope.launch {
+            val endScore = FinalScore()
+            insert(endScore)
+            endScore.finalScorevalue = 2
+        }
+    }
+
+    fun onClear() {
+        uiScope.launch {
+            // Clear the database table.
+            clear()
+
+        }
+    }
+
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
     }
-
-    private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
-    private var currentScore = MutableLiveData<FinalScore?>()
-    private val top10score = database.getTop10Score()
-
-    init {
-initializeCurrentScore()
-    }
-private fun initializeCurrentScore() {
-    uiScope.launch {
-        currentScore.value = getCurrentScoreFromDatabase()
-    }
-}
-
-    private suspend fun getCurrentScoreFromDatabase():FinalScore? {
-        return withContext(Dispatchers.IO) {
-            var score = database.getFirstScore()
-            if(score?.finalScorevalue == null) { score = null
-        }
-        score
-        }
-    }
-
-
 }
