@@ -7,13 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 
 import be.hub.jimmymiels.flaggame.R
 import be.hub.jimmymiels.flaggame.database.ScoreDatabase
 import be.hub.jimmymiels.flaggame.databinding.FragmentEndBinding
-import be.hub.jimmymiels.flaggame.gameScreen.GameViewModel
 
 
 class EndFragment : Fragment() {
@@ -43,6 +43,14 @@ class EndFragment : Fragment() {
         val viewModelFactory = EndViewModelFactory(dataSource, application)
         val endViewModel =
             ViewModelProviders.of(this, viewModelFactory).get(EndViewModel::class.java)
+
+        val adaptor = EndScoreAdaptor()
+        binding.scoreList.adapter = adaptor
+
+       endViewModel.top10score?.observe(viewLifecycleOwner, Observer {
+           it?.let { adaptor.data = it  }
+       })
+
 
         binding.endViewModel = endViewModel
         //binding.gameViewModel = viewModel
