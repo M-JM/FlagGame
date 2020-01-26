@@ -1,11 +1,13 @@
 package be.hub.jimmymiels.flaggame.endScreen
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import be.hub.jimmymiels.flaggame.database.FinalScore
 import be.hub.jimmymiels.flaggame.database.ScoreDatabaseDao
+import be.hub.jimmymiels.flaggame.gameScreen.GameFragment
+import be.hub.jimmymiels.flaggame.gameScreen.GameFragmentDirections
 import kotlinx.coroutines.*
 
 class EndViewModel (
@@ -13,16 +15,18 @@ class EndViewModel (
 ) :AndroidViewModel(application) {
 
     private var viewModelJob = Job()
-
-
-
-
+    var endscore  = 0
 
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
     private var currentScore = MutableLiveData<FinalScore?>()
     val top10score = database.getTop10Score()
 
+    private val _score = MutableLiveData<Int>()
+    val score: LiveData<Int>
+        get() = _score
+
     init {
+        onEndGame()
     }
 
     private suspend fun clear() {
@@ -43,7 +47,7 @@ class EndViewModel (
         uiScope.launch {
             val endScore = FinalScore()
             insert(endScore)
-            endScore.finalScorevalue = 2
+            endScore.finalScorevalue = endscore
         }
     }
 

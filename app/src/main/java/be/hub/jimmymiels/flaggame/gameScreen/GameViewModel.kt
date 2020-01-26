@@ -12,7 +12,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-class GameViewModel : ViewModel() {
+class GameViewModel() : ViewModel() {
 
     var radiochecked = MutableLiveData<Int>()
     var buttonchecked1 = MutableLiveData<Boolean>()
@@ -202,7 +202,7 @@ class GameViewModel : ViewModel() {
 
     fun hint2selected() {
 
-        _hint1.value = "This country is located in "+_country.value!!.subregion
+        _hint1.value = "This country is located in "+ _country.value!!.subregion
         _score.value = (_score.value)?.minus(25)
         buttonchecked2.value = false
 
@@ -211,7 +211,7 @@ class GameViewModel : ViewModel() {
 
     fun hint1selected() {
 
-        _hint2.value = "The capital of this Country is" + _country.value!!.capital
+        _hint2.value = "The capital of this Country is " + _country.value!!.capital
         _score.value = (_score.value)?.minus(25)
         buttonchecked1.value = false
 
@@ -222,6 +222,7 @@ class GameViewModel : ViewModel() {
         buttonchecked1.value = true
         buttonchecked2.value = true
     }
+
 
 
     override fun onCleared() {

@@ -51,7 +51,8 @@ class EndFragment : Fragment() {
            it?.let { adaptor.data = it  }
        })
 
-
+        val args = EndFragmentArgs.fromBundle(arguments!!)
+        endViewModel.endscore = args.endScore
         binding.endViewModel = endViewModel
         //binding.gameViewModel = viewModel
         binding.setLifecycleOwner(this)
@@ -60,6 +61,7 @@ class EndFragment : Fragment() {
             v.findNavController()
                 .navigate(EndFragmentDirections.actionEndFragmentToTitleFragment())
         }
+
         return binding.root
 
 

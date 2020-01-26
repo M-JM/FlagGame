@@ -34,6 +34,9 @@
         <action
             android:id="@+id/action_endFragment_to_titleFragment"
             app:destination="@id/titleFragment" />
+        <argument
+            android:name="endScore"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/countryListFragment"
