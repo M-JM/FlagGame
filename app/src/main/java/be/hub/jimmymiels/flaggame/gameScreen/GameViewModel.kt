@@ -159,16 +159,21 @@ class GameViewModel() : ViewModel() {
         _option4.value = chars[3].name
      }
 
-    fun resolveGame(){
+    fun resolveGame(selectedAnswer: Int){
 
-        val checkedId = radiochecked.value
+
+
+
         var selectedvalue = ""
-        when(checkedId) {
-            R.id.radioButton -> selectedvalue = _option1.value.toString()
-            R.id.radioButton2 -> selectedvalue = _option2.value.toString()
-            R.id.radioButton3 -> selectedvalue = _option3.value.toString()
-            R.id.radioButton4 -> selectedvalue = _option4.value.toString()
+        when(selectedAnswer) {
+            1 -> selectedvalue = _option1.value.toString()
+            2 -> selectedvalue = _option2.value.toString()
+            3 -> selectedvalue = _option3.value.toString()
+            4 -> selectedvalue = _option4.value.toString()
+
+
         }
+
       if (gameIndex > 0 ){
 
           if(_correctAnswer.value!!.toString() == selectedvalue)
@@ -183,14 +188,14 @@ class GameViewModel() : ViewModel() {
       }
 
     fun rightAnswer() {
-        _score.value = (_score.value)?.plus(100)
+        _score.value = (_score.value)?.plus(500)
         gameIndex--
         getRandomCountry()
         reset()
     }
 
     fun wrongAnswer() {
-        _score.value = (_score.value)?.plus(0)
+        _score.value = (_score.value)?.plus(10)
         gameIndex--
         getRandomCountry()
         reset()
