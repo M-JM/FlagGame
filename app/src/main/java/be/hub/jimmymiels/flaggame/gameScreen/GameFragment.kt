@@ -43,7 +43,7 @@ class GameFragment : Fragment() {
 
         binding.setLifecycleOwner(this)
 
-        viewModel.eventGameFinish.observe(this, Observer { isFinished ->   if (isFinished) {
+            viewModel.eventGameFinish.observe(this, Observer { isFinished ->   if (isFinished) {
             val test = viewModel.score.value!!.toInt()
             val action = GameFragmentDirections.actionGameFragmentToEndFragment(test)
 

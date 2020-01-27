@@ -21,12 +21,13 @@ class EndViewModel (
     private var currentScore = MutableLiveData<FinalScore?>()
     val top10score = database.getTop10Score()
 
-    private val _score = MutableLiveData<Int>()
-    val score: LiveData<Int>
+    private val _score = MutableLiveData<String>()
+    val score: LiveData<String>
         get() = _score
 
     init {
         onEndGame()
+
     }
 
     private suspend fun clear() {
@@ -48,6 +49,7 @@ class EndViewModel (
             val endScore = FinalScore()
             insert(endScore)
             endScore.finalScorevalue = endscore
+            _score.value = "Your current score is $endscore"
         }
     }
 

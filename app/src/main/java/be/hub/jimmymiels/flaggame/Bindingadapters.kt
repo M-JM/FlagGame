@@ -1,6 +1,7 @@
 package be.hub.jimmymiels.flaggame
 
 
+import android.view.View
 import android.widget.ImageView
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
@@ -35,6 +36,4 @@ GlideToVectorYou
         .into(imgView)*/
 
 }
-
-
-}
+  }

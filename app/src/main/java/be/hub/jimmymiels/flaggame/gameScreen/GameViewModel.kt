@@ -10,6 +10,7 @@ import be.hub.jimmymiels.flaggame.apiCountry.CountryProperties
 import kotlinx.coroutines.*
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.math.absoluteValue
 
 
 class GameViewModel() : ViewModel() {
@@ -17,8 +18,7 @@ class GameViewModel() : ViewModel() {
     var radiochecked = MutableLiveData<Int>()
     var buttonchecked1 = MutableLiveData<Boolean>()
     var buttonchecked2 = MutableLiveData<Boolean>()
-
-    private var gameIndex = 5
+        private var gameIndex = 5
 
 
     private val _testsize = MutableLiveData<String>()
@@ -97,8 +97,6 @@ class GameViewModel() : ViewModel() {
         _eventGameFinish.value = false
         buttonchecked1.value = true
         buttonchecked2.value = true
-
-
     }
 
     private fun getCountries() {
@@ -212,6 +210,7 @@ class GameViewModel() : ViewModel() {
         buttonchecked2.value = false
 
 
+
             }
 
     fun hint1selected() {
@@ -220,7 +219,10 @@ class GameViewModel() : ViewModel() {
         _score.value = (_score.value)?.minus(25)
         buttonchecked1.value = false
 
+
     }
+
+
 
     fun reset() {
         radiochecked.value = 0
