@@ -3,4 +3,10 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="titleText">Welcome to Flag Game</string>
+    <string name="TrainText">Training</string>
+    <string name="StartText">Start Game</string>
+    <string name="ImageContentText">FlagImage</string>
+    <string name="Hint2Text">Hint 1</string>
+    <string name="Hint1Text">Hint 2</string>
 </resources>
