@@ -14,10 +14,12 @@ class EndScoreAdaptor: RecyclerView.Adapter<TextItemViewHolder>(){
             field = value
             notifyDataSetChanged()
         }
+    var top10 = listOf(1..10)
     override fun getItemCount()= data.size
     override fun onBindViewHolder(holder: TextItemViewHolder, position: Int) {
-var item = data[position]
-        holder.textView.text = item.finalScorevalue.toString()
+        var item = data[position]
+        var count = data.indexOf(item) + 1
+        holder.textView.text = """${count}.  ${item.finalScorevalue}"""
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TextItemViewHolder {
