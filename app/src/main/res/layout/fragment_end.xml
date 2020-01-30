@@ -16,19 +16,21 @@
 
         android:id="@+id/frameLayout2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/color_primary">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/score_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/color_primary"
             android:textAlignment="center"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:spanCount="2">
 
         </androidx.recyclerview.widget.RecyclerView>
 
@@ -38,44 +40,49 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="84dp"
             android:text="@{endViewModel.score.toString()}"
+            android:textAllCaps="true"
+            android:textColor="@color/color_on_background"
+            android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/score_list" />
-
-        <Button
-            android:id="@+id/againButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="@{()-> endViewModel.onEndGame()}"
-            android:text="play again"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/backtitleButton" />
-
-        <Button
-            android:id="@+id/clear"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:onClick="@{()-> endViewModel.onClear()}"
-            android:text="clear"
-            app:layout_constraintStart_toEndOf="@+id/againButton"
-            app:layout_constraintTop_toTopOf="@+id/againButton" />
 
         <Button
             android:id="@+id/backtitleButton"
-            android:layout_width="wrap_content"
+            android:layout_width="135dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="210dp"
-            android:layout_marginEnd="21dp"
-            android:text="screen title"
-            app:layout_constraintEnd_toStartOf="@+id/againButton"
-            app:layout_constraintHorizontal_bias="1.0"
+            android:layout_marginTop="64dp"
+            android:background="@color/color_primary_variant"
+            android:text="@string/TitleScreenText"
+            android:textColor="@color/color_on_background"
+            app:layout_constraintStart_toStartOf="@+id/againButton"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+        <Button
+            android:id="@+id/againButton"
+            android:layout_width="136dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@color/color_primary_variant"
+            android:onClick="@{()-> endViewModel.onStartNewGame()}"
+            android:text="@string/PlayAgainText"
+            android:textColor="@color/color_on_background"
+            app:layout_constraintStart_toStartOf="@+id/clear"
+            app:layout_constraintTop_toBottomOf="@+id/backtitleButton" />
+
+        <Button
+            android:id="@+id/clear"
+            android:layout_width="136dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="104dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/color_primary_variant"
+            android:onClick="@{()-> endViewModel.onClear()}"
+            android:text="@string/ClearText"
+            android:textColor="@color/color_on_background"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/score_list" />
+            app:layout_constraintTop_toBottomOf="@+id/againButton" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

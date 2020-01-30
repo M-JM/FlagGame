@@ -4,5 +4,6 @@
     android:layout_height="wrap_content"
     android:paddingStart="16dp"
     android:paddingEnd="16dp"
-    android:textAlignment="center"
-    android:textSize="@dimen/TextSizeAnswers" />
+    android:textAlignment="gravity"
+    android:textColor="@color/color_on_background"
+    android:textSize="@dimen/keyline_6" />

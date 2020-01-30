@@ -19,6 +19,7 @@
             android:id="@+id/photos_grid"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:background="@color/color_primary"
             android:clipToPadding="false"
             android:padding="4dp"
             android:paddingTop="2dp"

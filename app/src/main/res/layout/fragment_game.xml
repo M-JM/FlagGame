@@ -18,7 +18,8 @@
 
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/color_primary">
 
 
         <ImageView
@@ -26,6 +27,8 @@
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:layout_marginTop="28dp"
+            android:background="@color/design_default_color_primary"
+            android:contentDescription="@string/ContentRandomFlagText"
             app:imageUrl="@{gameViewModel.randomflag}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -40,9 +43,11 @@
             android:layout_height="0dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
+            android:background="@color/color_primary_variant"
             android:enabled="@{gameViewModel.buttonchecked1}"
             android:onClick="@{()-> gameViewModel.hint1selected()}"
             android:text="@string/Hint2Text"
+            android:textColor="@color/color_on_background"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
@@ -51,9 +56,11 @@
             android:layout_width="73dp"
             android:layout_height="43dp"
             android:layout_marginTop="9dp"
+            android:background="@color/color_primary_variant"
             android:enabled="@{gameViewModel.buttonchecked2}"
             android:onClick="@{()-> gameViewModel.hint2selected()}"
             android:text="@string/Hint1Text"
+            android:textColor="@color/color_on_background"
             app:layout_constraintStart_toStartOf="@+id/button4"
             app:layout_constraintTop_toBottomOf="@+id/button4" />
 
@@ -71,9 +78,11 @@
                 android:id="@+id/radioButton3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/design_default_color_primary"
                 android:onClick="@{()-> gameViewModel.resolveGame(3)}"
                 android:text="@{gameViewModel.option3}"
                 android:textAlignment="gravity"
+                android:textColor="@color/color_on_background"
                 android:textSize="@dimen/TextSizeAnswers"
                 app:layout_constraintBottom_toTopOf="@+id/radioButton4"
                 app:layout_constraintTop_toBottomOf="@+id/radioButton2" />
@@ -82,9 +91,11 @@
                 android:id="@+id/radioButton4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/color_primary_variant"
                 android:onClick="@{()-> gameViewModel.resolveGame(4)}"
                 android:text="@{gameViewModel.option4}"
                 android:textAlignment="gravity"
+                android:textColor="@color/color_on_background"
                 android:textSize="@dimen/TextSizeAnswers"
                 app:layout_constraintBottom_toTopOf="@+id/radioButton"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -97,9 +108,11 @@
                 android:id="@+id/radioButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/design_default_color_primary"
                 android:onClick="@{()-> gameViewModel.resolveGame(1)}"
                 android:text="@{gameViewModel.option1}"
                 android:textAlignment="gravity"
+                android:textColor="@color/color_on_background"
                 android:textSize="@dimen/TextSizeAnswers"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -111,9 +124,11 @@
                 android:id="@+id/radioButton2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/color_primary_variant"
                 android:onClick="@{()-> gameViewModel.resolveGame(2)}"
                 android:text="@{gameViewModel.option2}"
                 android:textAlignment="gravity"
+                android:textColor="@color/color_on_background"
                 android:textSize="@dimen/TextSizeAnswers"
                 app:layout_constraintBottom_toTopOf="@+id/radioButton3"
                 app:layout_constraintTop_toTopOf="parent"
@@ -122,21 +137,26 @@
 
         <TextView
             android:id="@+id/textView4"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
+            android:background="@color/color_primary_variant"
             android:text="@{gameViewModel.hint1}"
+            android:textColor="@color/color_on_background"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/button3"
             app:layout_constraintTop_toBottomOf="@+id/textView5"
             tools:text="Hint 1 this goes here and there and here" />
 
         <TextView
             android:id="@+id/textView5"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="28dp"
+            android:background="@color/color_primary_variant"
             android:text="@{gameViewModel.hint2}"
+            android:textColor="@color/color_on_background"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/button4"

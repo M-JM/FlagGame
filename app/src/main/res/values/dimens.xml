@@ -6,6 +6,7 @@
         <dimen name="keyline_1">4sp</dimen>
         <dimen name="keyline_2">8sp</dimen>
         <dimen name="keyline_4">16sp</dimen>
+     <dimen name="keyline_6">20sp</dimen>
         <dimen name="keyline_5">24sp</dimen>
 
         <dimen name="component_label_horizontal_margin">@dimen/keyline_4</dimen>

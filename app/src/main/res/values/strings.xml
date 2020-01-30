@@ -9,4 +9,8 @@
     <string name="ImageContentText">FlagImage</string>
     <string name="Hint2Text">Hint 1</string>
     <string name="Hint1Text">Hint 2</string>
+    <string name="ClearText">Clear</string>
+    <string name="PlayAgainText">Play Again</string>
+    <string name="TitleScreenText">Title Screen</string>
+    <string name="ContentRandomFlagText">Random Flag</string>
 </resources>
