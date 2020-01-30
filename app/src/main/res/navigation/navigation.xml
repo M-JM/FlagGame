@@ -46,7 +46,7 @@
     <fragment
         android:id="@+id/countryListFragment"
         android:name="be.hub.jimmymiels.flaggame.countryScreen.CountryListFragment"
-        android:label="CountryListFragment"
+        android:label="List of all Countries"
         tools:layout="@layout/fragment_country_list">
         <action
             android:id="@+id/action_countryListFragment_to_countryDetailFragment"
@@ -55,7 +55,7 @@
     <fragment
         android:id="@+id/countryDetailFragment"
         android:name="be.hub.jimmymiels.flaggame.countryDetailScreen.CountryDetailFragment"
-        android:label="CountryDetailFragment"
+        android:label="More details on country"
         tools:layout="@layout/country_detail_fragment"
         >
      <argument
