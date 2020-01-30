@@ -25,8 +25,13 @@ class EndViewModel (
     val score: LiveData<String>
         get() = _score
 
+    private val _eventStartNewGame = MutableLiveData<Boolean>()
+    val eventStartNewGame: LiveData<Boolean>
+        get() = _eventStartNewGame
+
     init {
         onEndGame()
+        _eventStartNewGame.value = false
 
     }
 
@@ -42,6 +47,10 @@ class EndViewModel (
             database.insert(final)
         }
     }
+    }
+
+    fun onStartNewGame(){
+        _eventStartNewGame.value = true
     }
 
     fun onEndGame() {

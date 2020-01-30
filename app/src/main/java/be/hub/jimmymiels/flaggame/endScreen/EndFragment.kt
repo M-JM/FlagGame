@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 
 import be.hub.jimmymiels.flaggame.R
 import be.hub.jimmymiels.flaggame.database.ScoreDatabase
@@ -57,10 +58,22 @@ class EndFragment : Fragment() {
         //binding.gameViewModel = viewModel
         binding.setLifecycleOwner(this)
 
+        // navigate on clicklistener
         binding.backtitleButton.setOnClickListener { v: View ->
             v.findNavController()
                 .navigate(EndFragmentDirections.actionEndFragmentToTitleFragment())
         }
+
+        // navigate by observing by change in value in Endviewmodel, bind the function to execute on click
+        // conditional statement if , value is True then Navhost navigates.
+
+    endViewModel.eventStartNewGame.observe(this, Observer { isFinished -> if(isFinished)
+    {
+        val action = EndFragmentDirections.actionEndFragmentToGameFragment()
+        NavHostFragment.findNavController(this).navigate(action)
+    }
+
+    })
 
         return binding.root
 
