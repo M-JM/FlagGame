@@ -13,4 +13,7 @@
     <string name="PlayAgainText">Play Again</string>
     <string name="TitleScreenText">Title Screen</string>
     <string name="ContentRandomFlagText">Random Flag</string>
+    <string name="SubRegionText">Sub Region</string>
+    <string name="CapitalText">Capital</string>
+    <string name="CountryText">Country</string>
 </resources>

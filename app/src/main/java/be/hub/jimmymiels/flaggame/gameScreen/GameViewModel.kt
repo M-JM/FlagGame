@@ -82,7 +82,9 @@ class GameViewModel : ViewModel() {
     val eventGameFinish: LiveData<Boolean>
         get() = _eventGameFinish
 
-
+    private val _navigateToSelectedCountry = MutableLiveData<CountryProperties>()
+    val navigateToSelectedCountry: LiveData<CountryProperties>
+        get() = _navigateToSelectedCountry
 
 
     private var viewModelJob = Job()
@@ -229,6 +231,12 @@ class GameViewModel : ViewModel() {
         buttonchecked2.value = true
     }
 
+        fun displayCountryDetails(countryProperties: CountryProperties) {
+        _navigateToSelectedCountry.value = countryProperties
+    }
+    fun displayCountryDetailsComplete() {
+        _navigateToSelectedCountry.value = null
+    }
 
 
     override fun onCleared() {

@@ -7,9 +7,11 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import be.hub.jimmymiels.flaggame.apiCountry.CountryProperties
 import be.hub.jimmymiels.flaggame.databinding.GridViewItemBinding
+import be.hub.jimmymiels.flaggame.generated.callback.OnClickListener
 
-class PhotoGridAdapter : ListAdapter<CountryProperties, PhotoGridAdapter.CountryPropertiesViewHolder>(DiffCallback) {
-    class CountryPropertiesViewHolder(private var binding: GridViewItemBinding) : RecyclerView.ViewHolder(binding.root){
+class PhotoGridAdapter(val onClickListener: OnClickListener) : ListAdapter<CountryProperties, PhotoGridAdapter.CountryPropertiesViewHolder>(DiffCallback) {
+    class CountryPropertiesViewHolder(private var binding: GridViewItemBinding) :
+        RecyclerView.ViewHolder(binding.root){
 fun bind(countryProperties: CountryProperties) {
     binding.countries = countryProperties
     binding.executePendingBindings()
@@ -44,7 +46,14 @@ return CountryPropertiesViewHolder(GridViewItemBinding.inflate(LayoutInflater.fr
         position: Int
     ) {
        val countryProperties = getItem(position)
+        holder.itemView.setOnClickListener{
+            onClickListener.onClick(countryProperties)
+        }
         holder.bind(countryProperties)
+    }
+
+    class OnClickListener(val clickListener: (countryProperties: CountryProperties) -> Unit) {
+        fun onClick(countryProperties: CountryProperties) = clickListener(countryProperties)
     }
 
 }

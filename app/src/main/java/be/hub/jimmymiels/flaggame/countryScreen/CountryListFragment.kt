@@ -6,7 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 
 import be.hub.jimmymiels.flaggame.databinding.FragmentCountryListBinding
 import be.hub.jimmymiels.flaggame.gameScreen.GameViewModel
@@ -24,7 +26,17 @@ val binding = FragmentCountryListBinding.inflate(inflater)
 
         binding.setLifecycleOwner(this)
         binding.gameViewModel = viewModel
-        binding.photosGrid.adapter = PhotoGridAdapter()
+        binding.photosGrid.adapter = PhotoGridAdapter(PhotoGridAdapter.OnClickListener{
+            viewModel.displayCountryDetails(it)
+        })
+viewModel.navigateToSelectedCountry.observe(this, Observer {
+    if(null != it){
+        this.findNavController().navigate(CountryListFragmentDirections.actionCountryListFragmentToCountryDetailFragment(it))
+    viewModel.displayCountryDetailsComplete()
+    }
+
+})
+
 
         return binding.root
 

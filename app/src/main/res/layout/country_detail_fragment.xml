@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="be.hub.jimmymiels.flaggame.countryDetailScreen.CountryDetailViewModel" />
+
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_primary"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/main_photo_image"
+            android:layout_width="0dp"
+            android:layout_height="266dp"
+            android:scaleType="centerCrop"
+            app:imageUrl="@{viewModel.selectedCountry.imgSrcUrl}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/backgrounds/scenic" />
+
+        <TextView
+            android:id="@+id/country_name_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@{viewModel.selectedCountry.name}"
+            android:textColor="@color/color_on_background"
+            android:textSize="@dimen/keyline_7"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/main_photo_image"
+            tools:text="@string/CountryText" />
+
+        <TextView
+            android:id="@+id/capital_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:text="@{viewModel.selectedCountry.capital}"
+            android:textColor="@color/color_on_background"
+            android:textSize="@dimen/keyline_6"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/country_name_text"
+            tools:text="@string/CapitalText" />
+
+        <TextView
+            android:id="@+id/subregionText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="@{viewModel.selectedCountry.subregion}"
+            android:textColor="@color/color_on_background"
+            android:textSize="@dimen/keyline_6"
+            app:layout_constraintStart_toStartOf="@+id/capital_text"
+            app:layout_constraintTop_toBottomOf="@+id/capital_text" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
