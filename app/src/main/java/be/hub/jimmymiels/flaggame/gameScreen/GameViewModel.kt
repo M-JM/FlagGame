@@ -3,17 +3,15 @@ package be.hub.jimmymiels.flaggame.gameScreen
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import be.hub.jimmymiels.flaggame.R
 import be.hub.jimmymiels.flaggame.apiCountry.CountryApi
 import be.hub.jimmymiels.flaggame.apiCountry.CountryProperties
 
 import kotlinx.coroutines.*
 import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.math.absoluteValue
 
 
-class GameViewModel() : ViewModel() {
+class GameViewModel : ViewModel() {
 
     var radiochecked = MutableLiveData<Int>()
     var buttonchecked1 = MutableLiveData<Boolean>()
@@ -91,7 +89,7 @@ class GameViewModel() : ViewModel() {
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     init {
-        getCountries()
+       // getCountries()
         getRandomCountry()
         _score.value = 0
         _eventGameFinish.value = false
@@ -99,6 +97,7 @@ class GameViewModel() : ViewModel() {
         buttonchecked2.value = true
     }
 
+/*
     private fun getCountries() {
         coroutineScope.launch {
             var getPropertiesDeferred = CountryApi.retrofitService.getProperties()
@@ -114,15 +113,15 @@ class GameViewModel() : ViewModel() {
         }
 
     }
-
+*/
     fun getRandomCountry() {
         coroutineScope.launch {
-            var getPropertiesDeferred = CountryApi.retrofitService.getProperties()
+            val getPropertiesDeferred = CountryApi.retrofitService.getProperties()
 
 
             try {
-                var listResult = getPropertiesDeferred.await()
-                var random = Random().nextInt(249)
+                val listResult = getPropertiesDeferred.await()
+                val random = Random().nextInt(249)
                 _countries.value =listResult
                 _correctAnswer.value = listResult[random].name
                 _randomflag.value = listResult[random].imgSrcUrl
@@ -144,7 +143,7 @@ class GameViewModel() : ViewModel() {
 
     fun getRandomAnswers() {
 
-        var chars = _countries.value!!.shuffled().take(3).toMutableList()
+        val chars = _countries.value!!.shuffled().take(3).toMutableList()
 
         if (chars.isNotEmpty()) {
             chars.add(_country.value!!)
@@ -186,14 +185,14 @@ class GameViewModel() : ViewModel() {
       }
 
     fun rightAnswer() {
-        _score.value = (_score.value)?.plus(500)
+        _score.value = (_score.value)?.plus(100)
         gameIndex--
         getRandomCountry()
         reset()
     }
 
     fun wrongAnswer() {
-        _score.value = (_score.value)?.plus(10)
+        _score.value = (_score.value)?.plus(0)
         gameIndex--
         getRandomCountry()
         reset()

@@ -9,12 +9,9 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import be.hub.jimmymiels.flaggame.R
 import be.hub.jimmymiels.flaggame.databinding.FragmentGameBinding
-import kotlinx.android.synthetic.main.fragment_game.*
 
 
 class GameFragment : Fragment() {
@@ -44,7 +41,8 @@ class GameFragment : Fragment() {
         binding.setLifecycleOwner(this)
 
             viewModel.eventGameFinish.observe(this, Observer { isFinished ->   if (isFinished) {
-            val test = viewModel.score.value!!.toInt()
+
+                val test = viewModel.score.value!!.toInt()
             val action = GameFragmentDirections.actionGameFragmentToEndFragment(test)
 
 
