@@ -52,13 +52,13 @@ when launching the app and from then on out only use the local DB ( numbers of c
 
 Currently know problems to be fixed or improved:
 
-Some navigation not being done by observing events.
-Some variables are declared but never used
-Some Functions can be improved
-The SafeArgs passed between Game and End is being called and set in the Fragment instead of the ViewModel.
-Encapsulation of Mutables data is missing 
-Lack of comments to explain the code
-General clean up of unused libraries
-Naming convention and name declarations of variables could vastly be improved. ( random use of PascalCase and camelCase )
-Constraint layout is fixed on the parent (not good practice)
+- Some navigation not being done by observing events.
+- Some variables are declared but never used
+- Some Functions can be improved
+- The SafeArgs passed between Game and End is being called and set in the Fragment instead of the ViewModel.
+- Encapsulation of Mutables data is missing 
+- Lack of comments to explain the code
+- General clean up of unused libraries
+- Naming convention and name declarations of variables could vastly be improved. ( random use of PascalCase and camelCase )
+- Constraint layout is fixed on the parent (not good practice)
 
