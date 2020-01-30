@@ -4,8 +4,8 @@ A Small project to demonstrated the basics of Android app development.
 
 Tested only on Emulators :
 
-Pixel 2 API 
-Pixel 2 API without GPS
+- Pixel 2 API 
+- Pixel 2 API without GPS
 
 Description : 
 
